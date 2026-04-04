@@ -227,17 +227,17 @@ export default function Hero() {
       </div>
 
       {/* Mobile Stats - Simplified row for mobile */}
-      <div className="md:hidden flex justify-between px-6 mt-12 mb-8 relative z-30">
+      {/* <div className="md:hidden flex justify-between px-6 mt-12 mb-8 relative z-30">
         {stats.slice(0, 3).map((stat, i) => (
           <div key={i} className="flex flex-col items-center">
             <span className="font-bebas text-3xl text-white">{stat.value}{stat.suffix}</span>
             <span className="font-mono text-[7px] uppercase tracking-widest text-white/40">{stat.label.split(' ')[0]}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Desktop Stats - Vertical */}
-      <div ref={statsRef} className="absolute left-16 bottom-32 hidden md:flex flex-col gap-10 z-30">
+      {/* <div ref={statsRef} className="absolute left-16 bottom-32 hidden md:flex flex-col gap-10 z-30">
         {stats.map((stat, i) => (
           <div key={i} className="flex flex-col gap-0 group">
             <div className="flex items-baseline gap-2">
@@ -247,7 +247,7 @@ export default function Hero() {
             <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 group-hover:text-white transition-colors">{stat.label}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Full-Screen Interactive Hero Image */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -284,17 +284,16 @@ export default function Hero() {
           {[...Array(6)].map((_, i) => (
             <div key={i} className="flex items-center gap-12 md:gap-20 px-8">
               {[
-                "WEBSITES", "✦", 
-                "APP DEV", "✦", 
-                "ERP & CRM", "✦", 
+                "WEBSITES", "✦",
+                "APP DEV", "✦",
+                "ERP & CRM", "✦",
                 "BILLING SOFTWARE", "✦",
                 "UI/UX DESIGN", "✦"
               ].map((item, j) => (
                 <span
                   key={j}
-                  className={`font-bebas text-3xl md:text-6xl tracking-tighter ${
-                    item === "✦" ? "text-lime" : "text-white/[0.05]"
-                  }`}
+                  className={`font-bebas text-3xl md:text-6xl tracking-tighter ${item === "✦" ? "text-lime" : "text-white/[0.05]"
+                    }`}
                 >
                   {item}
                 </span>

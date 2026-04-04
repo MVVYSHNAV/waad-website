@@ -16,12 +16,17 @@ export default function Awards() {
   return (
     <section id="pages" className="py-20 lg:py-32 px-6 lg:px-12 bg-black clip-diagonal reveal relative overflow-hidden">
       <div className="max-w-screen-2xl mx-auto">
-        <label className="font-mono text-xs uppercase tracking-[0.4em] text-lime mb-8 block font-bold">
-          [PROUD MOMENTS]
-        </label>
-        
-        <h2 className="text-5xl md:text-8xl mb-24 leading-none tracking-tight text-white max-w-4xl">
-          CELEBRATING EXCELLENCE IN <span className="text-blue">CREATIVITY.</span>
+        <div className="flex items-center gap-4 mb-10">
+          <label className="font-mono text-[9px] md:text-xs uppercase tracking-[0.4em] text-lime block font-bold">
+            [PROUD MOMENTS]
+          </label>
+          <span className="font-pinyon text-xl md:text-3xl text-white/30 lowercase mt-1">
+            dream that achievs
+          </span>
+        </div>
+
+        <h2 className="text-5xl md:text-8xl mb-24 leading-[0.9] tracking-tight text-white max-w-4xl uppercase">
+          CELEBRATING <br /> <span className="text-lime">ENGINEERING</span> DISRUPTION.
         </h2>
 
         <div className="flex flex-col border-t border-white/5">
@@ -68,7 +73,7 @@ export default function Awards() {
         </div>
 
         {/* Stats Row - Subtle Footer */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mt-16 border-t border-white/5 pt-16">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mt-16 border-t border-white/5 pt-16">
           {[
             { val: "300+", label: "Total Awards" },
             { val: "200+", label: "Global Brands" },
@@ -84,7 +89,7 @@ export default function Awards() {
               </span>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

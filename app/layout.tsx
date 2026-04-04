@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans, Space_Mono } from "next/font/google";
+import { Bebas_Neue, DM_Sans, Space_Mono, Pinyon_Script } from "next/font/google";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -19,6 +19,12 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
+const pinyonScript = Pinyon_Script({
+  weight: "400",
+  variable: "--font-pinyon",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "WAAD | Strategic software developers",
   description: "WAAD is a bold, high-energy software development company specializing in neobrutalist design and digital excellence.",
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} h-full antialiased`}
+      className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${pinyonScript.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-[#050505] text-[#FFFFFF] font-dm-sans selection:bg-[#71bf44] selection:text-[#0A0A0A] overflow-x-hidden">
         {children}
