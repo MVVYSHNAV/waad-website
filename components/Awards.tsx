@@ -14,7 +14,7 @@ export default function Awards() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="pages" className="py-32 px-6 lg:px-12 bg-[#050A1A]">
+    <section id="pages" className="py-32 px-6 lg:px-12 bg-[#0C0C0C] clip-diagonal reveal">
       <div className="max-w-screen-2xl mx-auto">
         <label className="font-mono text-xs uppercase tracking-[0.4em] text-lime mb-8 block font-bold">
           [PROUD MOMENTS]

@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
-  { name: "Services", links: ["Brand Presence", "UX/UI Design", "Performance Marketing", "Social Media Strategy"] },
+  { name: "Services", links: ["Website Developing", "App Developing", "Billing Software", "ERP & CRM"] },
   { name: "Company", links: ["About Us", "Our Team", "Careers", "News & Insights"] },
   { name: "Contact", links: ["Inquiry Form", "Schedule a Meet", "Support Center", "General Email"] },
 ];
@@ -15,8 +16,13 @@ export default function Footer() {
         
         {/* Column 1: Logo & Tagline */}
         <div className="flex flex-col gap-10">
-          <Link href="/" className="text-6xl font-bebas text-lime tracking-tighter">
-            WAAD★
+          <Link href="/" className="relative h-20 w-20 group transition-transform hover:scale-110">
+            <Image
+              src="/waadlogo.png"
+              alt="WAAD Logo"
+              fill
+              className="object-contain"
+            />
           </Link>
           <p className="font-dm text-white/50 text-xl leading-relaxed max-w-xs">
             Pushing the boundaries of digital possibility with raw energy and meticulous design.
@@ -58,7 +64,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-screen-2xl mx-auto pt-32 mt-32 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
         <div className="font-mono text-[11px] uppercase tracking-widest text-white/30 text-center md:text-left">
-          © 2024 WAAD★ AGENCY — ALL RIGHTS RESERVED. <br /> MADE WITH PASSION IN A DISTANT FUTURE.
+          © 2024 WAAD AGENCY — ALL RIGHTS RESERVED. <br /> MADE WITH PASSION IN A DISTANT FUTURE.
         </div>
         <div className="flex items-center gap-12 font-mono text-[11px] uppercase tracking-widest text-white/30">
           <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>

@@ -68,12 +68,12 @@ export default function About() {
           <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-blue/10 -z-10 blur-3xl rounded-full" />
           <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-lime/10 -z-10 blur-3xl rounded-full" />
           
-          <div className="relative aspect-[3/4] w-full max-w-[500px] bg-card p-4 neobrutal-shadow group-hover:neobrutal-shadow-blue transition-all duration-500 overflow-hidden">
+          <div className="relative aspect-[3/4] w-full max-w-[500px] bg-card p-4 neobrutal-shadow group-hover:neobrutal-shadow-blue transition-all duration-500 overflow-hidden rounded-[40px]">
             <Image
               src="/about_portrait.png"
               alt="Creative Professional"
               fill
-              className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+              className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 rounded-[40px]"
             />
           </div>
           

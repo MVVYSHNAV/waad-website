@@ -14,7 +14,7 @@ import Noise from "@/components/Noise";
 
 export default function Home() {
   return (
-    <main className="relative flex flex-col w-full min-h-screen">
+    <main className="relative flex flex-col w-full min-h-screen md:max-w-screen-2xl md:mx-auto md:border-x border-white/10 shadow-2xl">
       <CustomCursor />
       <Noise />
       <Navbar />

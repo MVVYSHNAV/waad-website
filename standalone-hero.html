@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAAD ★ Creative Hero</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #060608;
+            --lime: #C8FF00;
+            --blue: #1A1AFF;
+            --white: #F5F5F5;
+            --muted: #555560;
+            --font-display: 'Bebas Neue', cursiv;
+            --font-body: 'Syne', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            height: 300vh; /* Allow scrolling for demonstration */
+        }
+
+        /* CUSTOM CURSOR */
+        #cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        #cursor-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, border 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* NOISE CANVAS */
+        #noise-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* GLOW BACKGROUND */
+        .glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(26, 26, 255, 0.15) 0%, rgba(6, 6, 8, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* STATS COLUMN */
+        .stats-col {
+            position: absolute;
+            left: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-col: column;
+            gap: 60px;
+            z-index: 10;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 48px;
+            color: var(--lime);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        .stat-bar {
+            width: 60px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .stat-bar-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: var(--lime);
+        }
+
+        /* HERO TITLE */
+        .title-container {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            user-select: none;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(56px, 15vw, 160px);
+            line-height: 0.85;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .line-1 { color: var(--lime); }
+        .line-2 { color: var(--white); }
+
+        .letter {
+            display: inline-block;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s;
+        }
+
+        /* CTA BUTTON */
+        .cta-wrap {
+            position: absolute;
+            bottom: 8vh;
+            right: 8vw;
+            z-index: 20;
+        }
+
+        #cta-btn {
+            background: var(--lime);
+            color: black;
+            padding: 24px 48px;
+            border-radius: 100px;
+            font-family: var(--font-body);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: none;
+            transition: background 0.3s;
+            box-shadow: 0 0 20px rgba(200, 255, 0, 0.2);
+        }
+
+        #cta-btn span {
+            display: inline-block;
+        }
+
+        /* TICKER */
+        .ticker {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .ticker-content {
+            display: flex;
+            white-space: nowrap;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: var(--muted);
+            gap: 40px;
+        }
+
+        /* SCROLL HINT */
+        .scroll-hint {
+            position: fixed;
+            bottom: 50%;
+            left: -100px;
+            transform: rotate(-90deg) translateY(-50%);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--lime);
+            opacity: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .scroll-line {
+            width: 200px;
+            height: 1px;
+            background: var(--lime);
+        }
+
+        /* UTILS */
+        .mix-diff {
+            background: white !important;
+            mix-blend-mode: difference !important;
+            border: none !important;
+        }
+
+        .lime-ring {
+            border: 2px solid var(--lime) !important;
+            border-radius: 50% !important;
+            background: transparent !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- MAIN HERO -->
+    <section class="hero">
+        <!-- NOISE FIELD -->
+        <canvas id="noise-canvas"></canvas>
+        
+        <!-- BG GLOW -->
+        <div class="glow" id="parallax-glow"></div>
+
+        <!-- STATS -->
+        <div class="stats-col" id="parallax-stats">
+            <div class="stat-item">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Happy Clients</div>
+                <div class="stat-bar"><div class="stat-bar-inner"></div></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="125">0</div>
+                <div class="stat-label">Projects Done</div>
+                <div class="stat-bar"><div class="stat-bar-inner"></div></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="450">0</div>
+                <div class="stat-label">Media Features</div>
+                <div class="stat-bar"><div class="stat-bar-inner"></div></div>
+            </div>
+        </div>
+
+        <!-- TITLE -->
+        <div class="title-container">
+            <h1 class="hero-title">
+                <div class="line-1" id="creative-text">CREATIVE</div>
+                <div class="line-2" id="agency-text">AGENCY</div>
+            </h1>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-wrap">
+            <button id="cta-btn">
+                <span>Start a Project</span>
+                <span class="arrow">→</span>
+            </button>
+        </div>
+
+        <!-- TICKER -->
+        <div class="ticker">
+            <div class="ticker-content" id="ticker-scroll">
+                <span>BRANDING ✦ GRAPHIC DESIGN ✦ WEB DESIGN ✦ DIGITAL MARKETING ✦</span>
+                <span>BRANDING ✦ GRAPHIC DESIGN ✦ WEB DESIGN ✦ DIGITAL MARKETING ✦</span>
+                <span>BRANDING ✦ GRAPHIC DESIGN ✦ WEB DESIGN ✦ DIGITAL MARKETING ✦</span>
+                <span>BRANDING ✦ GRAPHIC DESIGN ✦ WEB DESIGN ✦ DIGITAL MARKETING ✦</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCROLL HINT -->
+    <div class="scroll-hint" id="explore-hint">
+        <span>SCROLL TO EXPLORE</span>
+        <div class="scroll-line"></div>
+    </div>
+
+    <!-- FOOTER PLACEHOLDER FOR SCROLL SPACE -->
+    <div style="height: 100vh; background: #000; border-top: 1px solid #111; padding: 100px;">
+        <h2 style="font-family: 'Bebas Neue'; font-size: 80px; color: #333;">NEXT SECTION</h2>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- TITLE SPLITTING ---
+        function splitText(id) {
+            const el = document.getElementById(id);
+            const text = el.innerText;
+            el.innerHTML = '';
+            [...text].forEach(char => {
+                const span = document.createElement('span');
+                span.innerText = char;
+                span.classList.add('letter');
+                el.appendChild(span);
+            });
+        }
+        splitText('creative-text');
+        splitText('agency-text');
+
+        // --- CUSTOM CURSOR ---
+        const dot = document.getElementById('cursor-dot');
+        const follower = document.getElementById('cursor-follower');
+        let mouse = { x: 0, y: 0 };
+        let dotPos = { x: 0, y: 0 };
+        let folPos = { x: 0, y: 0 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        gsap.ticker.add(() => {
+            // Lerp follower
+            folPos.x += (mouse.x - folPos.x) * 0.12;
+            folPos.y += (mouse.y - folPos.y) * 0.12;
+            
+            gsap.set(dot, { x: mouse.x, y: mouse.y });
+            gsap.set(follower, { x: folPos.x - 20, y: folPos.y - 20 });
+        });
+
+        // Hover interactions
+        document.querySelectorAll('button, span.letter').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (el.classList.contains('letter')) {
+                    follower.classList.add('lime-ring');
+                    gsap.to(follower, { width: 80, height: 80, xPercent: -25, yPercent: -25 });
+                } else {
+                    follower.classList.add('mix-diff');
+                    gsap.to(follower, { width: 80, height: 80, xPercent: -25, yPercent: -25 });
+                }
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.classList.remove('mix-diff', 'lime-ring');
+                gsap.to(follower, { width: 40, height: 40, xPercent: 0, yPercent: 0 });
+            });
+        });
+
+        // --- MAGNETIC BUTTON ---
+        const ctaBtn = document.getElementById('cta-btn');
+        const ctaText = ctaBtn.querySelector('span');
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = ctaBtn.getBoundingClientRect();
+            const btnX = rect.left + rect.width / 2;
+            const btnY = rect.top + rect.height / 2;
+            
+            const dist = Math.hypot(e.clientX - btnX, e.clientY - btnY);
+            
+            if (dist < 120) {
+                const x = (e.clientX - btnX) * 0.4;
+                const y = (e.clientY - btnY) * 0.4;
+                gsap.to(ctaBtn, { x: x, y: y, duration: 0.3 });
+                gsap.to(ctaText, { x: x * 0.5, y: y * 0.5, duration: 0.3 });
+            } else {
+                gsap.to(ctaBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+                gsap.to(ctaText, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+            }
+        });
+
+        // --- PARALLAX MOUSE MOVE ---
+        window.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+            const moveY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+
+            gsap.to('#creative-text', { x: moveX * 30, y: moveY * 30, duration: 0.8 });
+            gsap.to('#agency-text', { x: -moveX * 20, y: -moveY * 20, duration: 0.8 });
+            gsap.to('#parallax-stats', { x: moveX * 50, y: moveY * 50, duration: 0.5 });
+            gsap.to('#noise-canvas', { x: moveX * 15, y: moveY * 15, duration: 1 });
+        });
+
+        // --- LETTER HOVER EFFECT ---
+        document.querySelectorAll('.letter').forEach((letter, i) => {
+            letter.addEventListener('mouseenter', () => {
+                gsap.to(letter, { 
+                    y: -12, 
+                    color: '#C8FF00', 
+                    rotation: (Math.random() - 0.5) * 10,
+                    duration: 0.3 
+                });
+                // Wave effect for neighbors
+                const prev = letter.previousElementSibling;
+                const next = letter.nextElementSibling;
+                if(prev) gsap.to(prev, { y: -6, duration: 0.3 });
+                if(next) gsap.to(next, { y: -6, duration: 0.3 });
+            });
+            letter.addEventListener('mouseleave', () => {
+                gsap.to([letter, letter.previousElementSibling, letter.nextElementSibling], { 
+                    y: 0, 
+                    color: '', 
+                    rotation: 0,
+                    duration: 0.4 
+                });
+            });
+        });
+
+        // --- SCROLL ANIMATIONS ---
+        
+        // 1. Kinetic Scroll Title
+        gsap.to('#creative-text', {
+            x: -200,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+        gsap.to('#agency-text', {
+            x: 200,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        // 2. Parallax Background Glow
+        gsap.to('#parallax-glow', {
+            y: -200,
+            scrollTrigger: {
+                trigger: '.hero',
+                scrub: 1
+            }
+        });
+
+        // 3. Stats Counter & Bars
+        const statsTrigger = ScrollTrigger.create({
+            trigger: '.stats-col',
+            start: 'top 80%',
+            onEnter: () => {
+                document.querySelectorAll('.stat-number').forEach(num => {
+                    const target = parseInt(num.getAttribute('data-target'));
+                    gsap.to(num, {
+                        innerText: target,
+                        duration: target > 200 ? 1.5 : 1,
+                        snap: { innerText: 1 },
+                        onUpdate: function() {
+                            this.targets()[0].innerText = Math.ceil(this.targets()[0].innerText) + '+';
+                        }
+                    });
+                });
+                document.querySelectorAll('.stat-bar-inner').forEach(bar => {
+                    gsap.to(bar, { width: '100%', duration: 1.5, ease: "power2.out" });
+                });
+            }
+        });
+
+        // 4. Scroll Hint Reveal
+        gsap.to('#explore-hint', {
+            opacity: 1,
+            left: 20,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: '80% top',
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // 5. Exit Morph (Letters Scatter)
+        gsap.to('.letter', {
+            x: () => (Math.random() - 0.5) * 500,
+            y: () => (Math.random() - 0.5) * 500,
+            rotation: () => (Math.random() - 0.5) * 180,
+            opacity: 0,
+            stagger: 0.01,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: '80% top',
+                scrub: 0.5
+            }
+        });
+
+        // --- TICKER ANIMATION ---
+        gsap.to('#ticker-scroll', {
+            xPercent: -50,
+            repeat: -1,
+            duration: 20,
+            ease: "none"
+        });
+
+        // --- NOISE WEBGL EFFECT (Simple Canvas Implementation) ---
+        const canvas = document.getElementById('noise-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function noise() {
+            const w = canvas.width;
+            const h = canvas.height;
+            const idata = ctx.createImageData(w, h);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            const len = buffer32.length;
+            let i = 0;
+
+            for(; i < len; i++) {
+                if (Math.random() < 0.5) buffer32[i] = 0xffffffff;
+            }
+            
+            ctx.putImageData(idata, 0, 0);
+            requestAnimationFrame(noise);
+        }
+        noise();
+
+    </script>
+</body>
+</html>

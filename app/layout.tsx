@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#0A0A0A] text-[#FFFFFF] font-dm-sans selection:bg-[#C8FF00] selection:text-[#0A0A0A] overflow-x-hidden">
+      <body className="min-h-full bg-[#050505] text-[#FFFFFF] font-dm-sans selection:bg-[#71bf44] selection:text-[#0A0A0A] overflow-x-hidden">
         {children}
         <script
           dangerouslySetInnerHTML={{

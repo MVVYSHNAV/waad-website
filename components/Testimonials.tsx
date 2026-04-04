@@ -35,7 +35,7 @@ export default function Testimonials() {
           {testimonials.map((t, index) => (
             <div
               key={index}
-              className="bg-card p-12 border border-white/5 flex flex-col justify-between group hover:border-lime/30 hover:neobrutal-shadow transition-all duration-300"
+              className={`bg-card p-12 border border-white/5 flex flex-col justify-between group hover:border-lime/30 hover:neobrutal-shadow transition-all duration-300 rounded-[40px]`}
             >
               <div className="text-8xl font-bebas text-lime/10 leading-none mb-1 group-hover:text-lime transition-colors">
                 "

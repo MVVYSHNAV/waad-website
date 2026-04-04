@@ -54,13 +54,13 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`group relative overflow-hidden bg-card border border-white/5 transition-all duration-500 hover:border-lime/40 ${project.className}`}
+              className={`group relative overflow-hidden bg-card border border-white/5 transition-all duration-500 hover:border-lime/40 rounded-[40px] ${project.className}`}
             >
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover transition-all duration-[1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:rotate-1"
+                className="object-cover transition-all duration-[1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:rotate-1 rounded-[40px]"
               />
               
               {/* Overlay on Hover */}

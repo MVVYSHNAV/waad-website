@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,8 +22,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bebas text-lime flex items-center gap-1 group">
-          <span className="text-[32px] tracking-tight">WAAD★</span>
+        <Link href="/" className="relative h-10 w-10 md:h-12 md:w-12 group transition-all hover:scale-110">
+          <Image
+            src="/waadlogo.png"
+            alt="WAAD Logo"
+            fill
+            className="object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop Links */}
