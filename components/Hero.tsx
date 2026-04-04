@@ -27,6 +27,7 @@ export default function Hero() {
   const ctaBtnRef = useRef<HTMLButtonElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const chipsRef = useRef<HTMLDivElement>(null);
+  const heroImageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -76,7 +77,7 @@ export default function Hero() {
     const statNumbers = statsRef.current?.querySelectorAll(".stat-number");
     statNumbers?.forEach((num, i) => {
       const target = stats[i].value;
-      gsap.fromTo(num, 
+      gsap.fromTo(num,
         { innerText: 0 },
         {
           innerText: target,
@@ -86,7 +87,7 @@ export default function Hero() {
             trigger: statsRef.current,
             start: "top 90%",
           },
-          onUpdate: function() {
+          onUpdate: function () {
             num.innerHTML = Math.ceil(Number(this.targets()[0].innerText)) + stats[i].suffix;
           }
         }
@@ -113,7 +114,7 @@ export default function Hero() {
       gsap.to(line1Ref.current, { x: x * 40, y: y * 40, duration: 1.2, ease: "power2.out" });
       gsap.to(line2Ref.current, { x: -x * 30, y: -y * 30, duration: 1.2, ease: "power2.out" });
       gsap.to(statsRef.current, { x: x * 60, y: y * 60, duration: 0.8 });
-      
+
       // Floating chips parallax
       const chips = chipsRef.current?.children;
       if (chips) {
@@ -130,16 +131,40 @@ export default function Hero() {
         const centerY = rect.top + rect.height / 2;
         const distance = Math.hypot(clientX - centerX, clientY - centerY);
         if (distance < 150) {
-          gsap.to(ctaBtnRef.current, { 
-            x: (clientX - centerX) * 0.5, 
-            y: (clientY - centerY) * 0.5, 
-            duration: 0.3 
+          gsap.to(ctaBtnRef.current, {
+            x: (clientX - centerX) * 0.5,
+            y: (clientY - centerY) * 0.5,
+            duration: 0.3
           });
         } else {
           gsap.to(ctaBtnRef.current, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
         }
       }
+
+      // Parallax for full-screen background image
+      if (heroImageRef.current) {
+        gsap.to(heroImageRef.current, {
+          x: x * -100,
+          y: y * -100,
+          duration: 2,
+          ease: "power2.out"
+        });
+      }
     };
+
+    // Background Image Scroll Zoom
+    if (heroImageRef.current) {
+      gsap.to(heroImageRef.current, {
+        scale: 1.6,
+        rotate: 3,
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        }
+      });
+    }
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -147,8 +172,8 @@ export default function Hero() {
 
   const SplittedText = ({ text }: { text: string }) => {
     return text.split("").map((char, i) => (
-      <span 
-        key={i} 
+      <span
+        key={i}
         className="letter inline-block transition-all duration-300 hover:text-lime hover:-translate-y-4 cursor-none"
       >
         {char}
@@ -157,19 +182,19 @@ export default function Hero() {
   };
 
   return (
-    <section ref={heroRef} className="relative min-h-[110vh] flex flex-col justify-center pt-24 overflow-hidden bg-[#060608]">
+    <section ref={heroRef} className="relative min-h-[100dvh] md:min-h-[110vh] flex flex-col justify-center pt-20 md:pt-24 overflow-hidden bg-[#060608]">
       {/* Systematic Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: 'linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       {/* Background Glows */}
-      <div ref={glowRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue/15 rounded-full blur-[150px] -z-10" />
-      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-lime/5 rounded-full blur-[120px] -z-10" />
-      
-      {/* Floating Chips */}
+      <div ref={glowRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[1000px] h-[600px] md:h-[1000px] bg-blue/15 rounded-full blur-[100px] md:blur-[150px] -z-10" />
+      <div className="absolute top-1/4 right-0 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-lime/5 rounded-full blur-[80px] md:blur-[120px] -z-10" />
+
+      {/* Floating Chips - Desktop Only */}
       <div ref={chipsRef} className="absolute inset-0 z-20 pointer-events-none hidden lg:block">
         {floatingChips.map((chip, i) => (
-          <div 
+          <div
             key={i}
             className="absolute px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-[9px] text-white/40 tracking-[0.2em] whitespace-nowrap backdrop-blur-md"
             style={{ left: chip.x, top: chip.y }}
@@ -179,8 +204,40 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Floating Stats - Redesigned */}
-      <div ref={statsRef} className="absolute left-8 lg:left-16 bottom-32 hidden md:flex flex-col gap-10 z-30">
+      {/* Main Text Content */}
+      <div className="max-w-screen-2xl mx-auto px-8 md:px-16 relative z-10 select-none w-full">
+        <div ref={titleGroupRef} className="flex flex-col items-center md:items-start relative">
+          <div className="absolute -top-10 md:-top-16 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 font-mono text-[9px] md:text-[11px] text-lime tracking-[0.5em] animate-pulse whitespace-nowrap">
+            [ARCHITECTURE OF DISRUPTION]
+          </div>
+
+          <h1 ref={line1Ref} className="hero-title text-[clamp(4rem,18vw,15rem)] leading-[0.7] tracking-tighter text-white text-center md:text-left">
+            <SplittedText text="WE ARE" />
+          </h1>
+
+          <div className="md:pl-44 flex flex-col md:flex-row items-center md:items-end gap-10 md:gap-12 mt-4 md:-mt-8">
+            <h1 ref={line2Ref} className="hero-title text-[clamp(4rem,18vw,15rem)] leading-[0.7] tracking-tighter text-lime md:text-outline md:hover:text-lime transition-all duration-700 text-center md:text-left">
+              <SplittedText text="WAAD★" />
+            </h1>
+            <p className="font-dm text-white/30 text-[10px] md:text-sm max-w-[280px] md:max-w-[320px] mb-6 md:mb-10 leading-relaxed uppercase tracking-widest text-center md:text-left border-l border-white/5 pl-6 hidden lg:block">
+              TRANSFORMING VISIONS INTO UNCONVENTIONAL DIGITAL REALITIES. ELITE WEB CRAFT FOR THE NEW CREATIVE ERA.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Stats - Simplified row for mobile */}
+      <div className="md:hidden flex justify-between px-6 mt-12 mb-8 relative z-30">
+        {stats.slice(0, 3).map((stat, i) => (
+          <div key={i} className="flex flex-col items-center">
+            <span className="font-bebas text-3xl text-white">{stat.value}{stat.suffix}</span>
+            <span className="font-mono text-[7px] uppercase tracking-widest text-white/40">{stat.label.split(' ')[0]}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Stats - Vertical */}
+      <div ref={statsRef} className="absolute left-16 bottom-32 hidden md:flex flex-col gap-10 z-30">
         {stats.map((stat, i) => (
           <div key={i} className="flex flex-col gap-0 group">
             <div className="flex items-baseline gap-2">
@@ -192,62 +249,51 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Main Text Content - Asymmetrical Redesign */}
-      <div className="container mx-auto px-6 relative z-10 select-none">
-        <div ref={titleGroupRef} className="flex flex-col items-center md:items-start relative">
-          <div className="absolute -top-12 left-0 font-mono text-[10px] text-lime tracking-[0.5em] animate-pulse">
-            [EXPERIENCE THE FUTURE]
-          </div>
-          
-          <h1 ref={line1Ref} className="hero-title text-[clamp(4.5rem,16vw,14rem)] leading-[0.75] tracking-tighter text-white">
-            <SplittedText text="WE ARE" />
-          </h1>
-          
-          <div className="md:ml-20 flex flex-col md:flex-row items-center md:items-end gap-0 md:gap-12">
-            <h1 ref={line2Ref} className="hero-title text-[clamp(4.5rem,16vw,14xl)] leading-[0.75] tracking-tighter text-lime md:text-outline md:hover:text-lime transition-all duration-700">
-              <SplittedText text="WAAD★" />
-            </h1>
-            <p className="font-dm text-white/30 text-xs md:text-sm max-w-[200px] mb-4 md:mb-8 leading-relaxed uppercase tracking-widest hidden lg:block">
-              Pushing digital boundaries through neobrutalist energy and meticulous code.
-            </p>
-          </div>
+      {/* Full-Screen Interactive Hero Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div ref={heroImageRef} className="relative w-full h-full transform-gpu">
+          <Image
+            src="/hero_woman.png"
+            alt="Creative Model"
+            fill
+            priority
+            className="object-cover scale-110 filter grayscale opacity-40 md:opacity-50 mix-blend-screen"
+          />
+          {/* Edge Fade Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060608] via-transparent to-[#060608] opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060608] via-transparent to-[#060608] opacity-40" />
         </div>
       </div>
 
-      {/* Hero Image - Tilted & Clipped */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-[20%] -translate-y-1/2 w-[70vw] max-w-[900px] z-[5] pointer-events-none opacity-40 mix-blend-screen overflow-hidden rotate-[-2deg] transition-transform duration-[2s] hover:rotate-0">
-        <Image
-          src="/hero_woman.png"
-          alt="Creative Model"
-          width={1200}
-          height={1200}
-          priority
-          className="object-cover scale-125 filter grayscale"
-        />
-      </div>
-
-      {/* CTA Button */}
-      <div className="absolute bottom-20 right-8 lg:right-24 z-40">
-        <button 
+      {/* CTA Button - Standardizing Size for a Premium Pill Shape */}
+      <div className="flex justify-center md:block md:absolute md:bottom-28 md:right-24 z-40 mt-10 md:mt-0 px-8 w-full md:w-auto">
+        <button
           ref={ctaBtnRef}
-          className="group relative flex items-center justify-center bg-white hover:bg-lime px-12 py-8 rounded-full text-black font-bebas text-4xl uppercase tracking-wider transition-all duration-300 hover:neobrutal-shadow-blue"
+          className="group relative flex items-center justify-center bg-white hover:bg-lime w-full md:w-auto px-10 md:px-14 py-5 md:py-7 rounded-full text-black font-bebas text-lg md:text-2xl uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-[0_15px_40px_-5px_rgba(200,255,0,0.4)]"
         >
-          <span className="relative z-10 flex items-center gap-6">
-            START PROJECT <span className="group-hover:translate-x-3 transition-transform duration-300">→</span>
+          <span className="relative z-10 flex items-center gap-4 md:gap-6">
+            START PROJECT <span className="group-hover:translate-x-3 transition-transform duration-300 transform-gpu">&rarr;</span>
           </span>
+          <div className="absolute inset-0 rounded-full bg-lime scale-[0.6] opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 -z-10" />
         </button>
       </div>
 
-      {/* Ticker - Positioned overlapping title slightly */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/5 backdrop-blur-xl py-6 border-t border-white/5 z-20">
+      {/* Ticker - Corrected with actual services */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-[#060608]/90 backdrop-blur-2xl py-6 md:py-10 border-y border-white/5 z-20">
         <div className="flex whitespace-nowrap animate-marquee">
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="flex items-center gap-12 px-6">
-              {["INNOVATION", "✦", "CRAFT", "✦", "ENERGY", "✦", "FUTURE", "✦"].map((item, j) => (
+            <div key={i} className="flex items-center gap-12 md:gap-20 px-8">
+              {[
+                "WEBSITES", "✦", 
+                "APP DEV", "✦", 
+                "ERP & CRM", "✦", 
+                "BILLING SOFTWARE", "✦",
+                "UI/UX DESIGN", "✦"
+              ].map((item, j) => (
                 <span
                   key={j}
-                  className={`font-bebas text-xl md:text-3xl tracking-widest ${
-                    item === "✦" ? "text-lime" : "text-white/10"
+                  className={`font-bebas text-3xl md:text-6xl tracking-tighter ${
+                    item === "✦" ? "text-lime" : "text-white/[0.05]"
                   }`}
                 >
                   {item}

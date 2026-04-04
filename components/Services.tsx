@@ -128,7 +128,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-32 px-6 lg:px-12 bg-background relative overflow-hidden" ref={containerRef}>
+    <section id="services" className="pt-48 lg:pt-64 pb-32 lg:pb-48 px-6 lg:px-12 bg-background relative overflow-hidden" ref={containerRef}>
       {/* Background Decorative element */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/5 rounded-full blur-[150px] -z-10" />
 
