@@ -8,7 +8,7 @@ const skills = [
 
 export default function About() {
   return (
-    <section id="about" className="py-32 lg:py-60 px-6 lg:px-12 bg-black overflow-hidden reveal">
+    <section id="about" className="py-20 lg:py-32 px-6 lg:px-12 bg-black overflow-hidden reveal">
       <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
         {/* Left Content */}
         <div className="flex flex-col gap-12 animate-fade-up">

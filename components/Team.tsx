@@ -9,7 +9,7 @@ const team = [
 
 export default function Team() {
   return (
-    <section id="team" className="py-32 lg:py-60 px-6 lg:px-12 bg-black">
+    <section id="team" className="py-20 lg:py-32 px-6 lg:px-12 bg-black">
       <div className="max-w-screen-2xl mx-auto flex flex-col items-center">
         <label className="font-mono text-xs uppercase tracking-[0.4em] text-lime mb-8 block font-bold">
           [THE BRAINS]

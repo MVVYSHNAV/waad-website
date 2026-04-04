@@ -35,7 +35,7 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-32 lg:py-60 px-6 lg:px-12 bg-[#060608]">
+    <section id="portfolio" className="py-20 lg:py-32 px-6 lg:px-12 bg-[#060608]">
       <div className="max-w-screen-2xl mx-auto">
         <label className="font-mono text-xs uppercase tracking-[0.4em] text-lime mb-8 block font-bold animate-fade-up">
           [OUR LATEST WORK]

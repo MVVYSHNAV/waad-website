@@ -1,6 +1,6 @@
 export default function CTAFooter() {
   return (
-    <section className="py-40 px-6 lg:px-12 bg-black overflow-hidden relative border-t border-white/5">
+    <section className="py-24 lg:py-40 px-6 lg:px-12 bg-black overflow-hidden relative border-t border-white/5">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-lime/10 blur-[150px] -z-10 rounded-full" />
       
