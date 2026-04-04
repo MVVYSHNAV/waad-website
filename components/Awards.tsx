@@ -33,43 +33,53 @@ export default function Awards() {
               className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-10 md:py-16 border-b border-white/5 transition-all duration-300 hover:bg-white/[0.02]"
             >
               {/* Year */}
-              <div className="font-mono text-lime font-bold text-xs uppercase tracking-[0.3em] mb-4 md:mb-0">
+              <div className="font-mono text-lime font-bold text-xs uppercase tracking-[0.3em] mb-4 md:mb-0 transition-opacity group-hover:opacity-100 opacity-40">
                 {award.year}
               </div>
 
-              {/* Title */}
+              {/* Title with 3D Barrel Roll (Grilling) Animation */}
               <div className="flex-1 md:px-20">
-                <h3 className="text-4xl md:text-6xl text-white font-bebas tracking-tight transition-all duration-300 group-hover:text-lime group-hover:pl-4">
-                  {award.title}
-                </h3>
+                <div className="relative h-[48px] md:h-[72px] overflow-hidden [perspective:1000px] [transform-style:preserve-3d]">
+                  <h3 className="text-4xl md:text-6xl text-white font-bebas tracking-tight transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full group-hover:rotate-x-[-90deg] origin-top select-none">
+                    {award.title}
+                  </h3>
+                  <h3 className="absolute top-0 left-0 w-full text-4xl md:text-6xl text-lime font-bebas tracking-tight transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full rotate-x-[90deg] group-hover:translate-y-0 group-hover:rotate-x-0 origin-bottom select-none">
+                    {award.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* SPINOFF STAR - GHOST BACKGROUND ANIMATION */}
+              <div className="absolute left-[15%] md:left-[10%] top-1/2 -translate-y-1/2 pointer-events-none opacity-0 scale-0 group-hover:opacity-10 group-hover:scale-[2.5] group-hover:rotate-[360deg] transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] -z-10 mix-blend-screen">
+                <span className="text-lime text-9xl blur-sm md:blur-none opacity-20">✦</span>
               </div>
 
               {/* Category */}
-              <div className="font-mono text-white/30 text-xs uppercase tracking-widest">
+              <div className="font-mono text-white/30 text-[10px] md:text-xs uppercase tracking-widest transition-colors group-hover:text-white/60">
                 {award.category}
               </div>
 
-              {/* Arrow */}
-              <div className="hidden md:flex ml-12 opacity-0 -translate-x-12 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+              {/* Arrow Spinoff */}
+              <div className="hidden md:flex ml-12 opacity-0 -translate-x-12 group-hover:opacity-100 group-hover:translate-x-0 group-hover:rotate-[45deg] transition-all duration-500">
                 <span className="text-6xl text-lime">↗</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mt-32 border-t border-white/5 pt-32">
+        {/* Stats Row - Subtle Footer */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mt-16 border-t border-white/5 pt-16">
           {[
             { val: "300+", label: "Total Awards" },
             { val: "200+", label: "Global Brands" },
             { val: "15Y", label: "Industry Exp" },
             { val: "24/7", label: "Client Support" },
           ].map((stat, i) => (
-            <div key={i} className="flex flex-col gap-4">
-              <span className="text-7xl font-bebas text-white leading-none group-hover:text-lime">
+            <div key={i} className="flex flex-col gap-4 group/stat">
+              <span className="text-5xl md:text-7xl font-bebas text-white/20 leading-none group-hover/stat:text-lime transition-colors">
                 {stat.val}
               </span>
-              <span className="font-mono text-xs uppercase tracking-widest text-white/40">
+              <span className="font-mono text-[9px] md:text-xs uppercase tracking-widest text-white/20 group-hover/stat:text-white/60 transition-colors">
                 {stat.label}
               </span>
             </div>

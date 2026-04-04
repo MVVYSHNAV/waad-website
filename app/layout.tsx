@@ -20,8 +20,8 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WAAD★ | Creative Agency",
-  description: "WAAD is a bold, high-energy creative agency specializing in neobrutalist design and digital excellence.",
+  title: "WAAD | Strategic software developers",
+  description: "WAAD is a bold, high-energy software development company specializing in neobrutalist design and digital excellence.",
 };
 
 export default function RootLayout({

@@ -219,7 +219,7 @@ export default function Hero() {
             <h1 ref={line2Ref} className="hero-title text-[clamp(4rem,18vw,15rem)] leading-[0.7] tracking-tighter text-lime md:text-outline md:hover:text-lime transition-all duration-700 text-center md:text-left">
               <SplittedText text="WAAD★" />
             </h1>
-            <p className="font-dm text-white/30 text-[10px] md:text-sm max-w-[280px] md:max-w-[320px] mb-6 md:mb-10 leading-relaxed uppercase tracking-widest text-center md:text-left border-l border-white/5 pl-6 hidden lg:block">
+            <p className="font-dm text-white/30 text-[11px] md:text-sm max-w-[320px] mb-6 md:mb-10 leading-relaxed uppercase tracking-widest text-center md:text-left border-l border-white/5 pl-6 block">
               TRANSFORMING VISIONS INTO UNCONVENTIONAL DIGITAL REALITIES. ELITE WEB CRAFT FOR THE NEW CREATIVE ERA.
             </p>
           </div>
