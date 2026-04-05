@@ -279,8 +279,8 @@ export default function Hero() {
       </div>
 
       {/* Ticker - Corrected with actual services */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-[#060608]/90 backdrop-blur-2xl py-6 md:py-10 border-y border-white/5 z-20">
-        <div className="flex whitespace-nowrap animate-marquee">
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-background/80 backdrop-blur-3xl py-8 md:py-12 border-t border-white/10 z-20">
+        <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused]">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="flex items-center gap-12 md:gap-20 px-8">
               {[
@@ -292,8 +292,11 @@ export default function Hero() {
               ].map((item, j) => (
                 <span
                   key={j}
-                  className={`font-bebas text-3xl md:text-6xl tracking-tighter ${item === "✦" ? "text-lime" : "text-white/[0.05]"
-                    }`}
+                  className={`font-bebas text-4xl md:text-7xl tracking-tighter transition-all duration-300 ${
+                    item === "✦" 
+                      ? "text-lime drop-shadow-[0_0_15px_rgba(113,191,68,0.4)]" 
+                      : "text-white/20 hover:text-white/80 cursor-default"
+                  }`}
                 >
                   {item}
                 </span>
