@@ -295,7 +295,7 @@ export default function Hero() {
                   className={`font-bebas text-4xl md:text-7xl tracking-tighter transition-all duration-300 ${
                     item === "✦" 
                       ? "text-lime drop-shadow-[0_0_15px_rgba(113,191,68,0.4)]" 
-                      : "text-white/20 hover:text-white/80 cursor-default"
+                      : "text-white cursor-default"
                   }`}
                 >
                   {item}
