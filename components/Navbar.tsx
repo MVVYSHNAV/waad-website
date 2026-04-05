@@ -84,7 +84,7 @@ export default function Navbar() {
             {navItems.map((item) => (
               <Link
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={item === "Contact" ? "/contact" : `/#${item.toLowerCase()}`}
                 className="hover:text-lime transition-colors duration-200"
               >
                 {item}
@@ -95,7 +95,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {/* CTA Desktop */}
             <Link
-              href="#contact"
+              href="/contact"
               className="hidden md:group md:relative md:inline-flex items-center gap-2 bg-lime px-6 py-2.5 rounded-full font-mono text-black text-[13px] uppercase tracking-wider transition-all duration-300 hover:pr-8 hover:neobrutal-shadow"
             >
               <span>Get Started</span>
@@ -160,7 +160,7 @@ export default function Navbar() {
               {navItems.map((item, index) => (
                 <Link
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={item === "Contact" ? "/contact" : `/#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
                   className="mobile-link group flex items-baseline gap-4"
                 >
@@ -175,7 +175,7 @@ export default function Navbar() {
 
           <div className="p-10 mt-auto flex flex-col gap-12">
             <Link
-              href="#contact"
+              href="/contact"
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-between bg-lime text-black px-8 py-5 rounded-full font-bebas text-xl uppercase tracking-wider transition-transform active:scale-95 neobrutal-shadow"
             >
