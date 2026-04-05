@@ -15,7 +15,7 @@ export default function About() {
           <label className="font-mono text-xs uppercase tracking-[0.4em] text-lime block font-bold">
             [STRATEGY MEETS CODE]
           </label>
-          
+
           <h2 className="text-6xl md:text-8xl leading-none tracking-tight text-white mb-6 uppercase italic">
             WE ARE <span className="text-outline text-white/20">A STRATEGIC</span> SOFTWARE LAB.
           </h2>
@@ -67,8 +67,8 @@ export default function About() {
         <div className="relative group p-10 flex items-center justify-center">
           <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-blue/10 -z-10 blur-3xl rounded-full" />
           <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-lime/10 -z-10 blur-3xl rounded-full" />
-          
-          <div className="relative aspect-[3/4] w-full max-w-[500px] bg-card p-4 neobrutal-shadow group-hover:neobrutal-shadow-blue transition-all duration-500 overflow-hidden rounded-[40px]">
+
+          <div className="relative aspect-[3/4] w-full max-w-[600px] bg-card p-4 neobrutal-shadow group-hover:neobrutal-shadow-blue transition-all duration-500 overflow-hidden rounded-[40px]">
             <Image
               src="/about_portrait.webp"
               alt="Creative Professional"
@@ -76,7 +76,7 @@ export default function About() {
               className="object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 scale-110 group-hover:scale-100 rounded-[40px]"
             />
           </div>
-          
+
           {/* Overlay text cutout thing */}
           <div className="absolute -bottom-10 -right-10 bg-lime p-8 w-48 h-48 rounded-full flex items-center justify-center text-black font-bebas text-3xl leading-none rotate-12 transition-transform duration-500 group-hover:-rotate-6">
             <span>ENGINEERED FOR EXCELLENCE</span>
