@@ -253,11 +253,11 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div ref={heroImageRef} className="relative w-full h-full transform-gpu">
           <Image
-            src="/hero_woman.png"
-            alt="Creative Model"
+            src="/hero_main.webp"
+            alt="Vibrant Creative Studio"
             fill
             priority
-            className="object-cover scale-110 filter grayscale opacity-40 md:opacity-50 mix-blend-screen"
+            className="object-cover scale-110 filter grayscale-50 opacity-60 md:opacity-70 mix-blend-screen transition-all duration-1000 hover:grayscale-0"
           />
           {/* Edge Fade Gradients */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#060608] via-transparent to-[#060608] opacity-80" />

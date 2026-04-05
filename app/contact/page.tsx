@@ -30,7 +30,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 w-full mt-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 xl:gap-32 w-full mt-10 items-start">
           {/* Left Column: Direct Contact */}
           <div className="flex flex-col gap-24 reveal active [animation-delay:0.3s]">
             <div className="flex flex-col gap-10">
@@ -57,10 +57,20 @@ export default function Contact() {
               <h3 className="font-bebas text-5xl text-white tracking-widest uppercase border-l-4 border-blue/40 pl-6">
                 SOCIAL NODES
               </h3>
-              <div className="flex flex-wrap gap-x-14 gap-y-8">
-                {["INSTAGRAM", "LINKEDIN", "TWITTER", "DRIBBBLE"].map(sm => (
-                  <a key={sm} href="#" className="font-mono text-[11px] uppercase tracking-[0.4em] text-white/40 hover:text-lime transition-colors">
-                    /{sm}
+              <div className="grid grid-cols-2 gap-x-14 gap-y-10">
+                {[
+                  { name: "INSTAGRAM", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> },
+                  { name: "LINKEDIN", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> },
+                  { name: "TWITTER", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg> },
+                  { name: "DRIBBBLE", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.49-6.18 7.08-15.26 8.67m13.29 1.89c-4.37-1.13-7.43-1.46-13.46.36"></path></svg> }
+                ].map((sm, i) => (
+                  <a key={i} href="#" className="flex items-center gap-4 group">
+                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:text-lime group-hover:border-lime transition-all duration-300">
+                      {sm.icon}
+                    </div>
+                    <span className="font-mono text-[13px] uppercase tracking-[0.3em] text-white/40 group-hover:text-white transition-colors">
+                      {sm.name}
+                    </span>
                   </a>
                 ))}
               </div>
