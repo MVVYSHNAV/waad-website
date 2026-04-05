@@ -70,7 +70,7 @@ export default function About() {
           
           <div className="relative aspect-[3/4] w-full max-w-[500px] bg-card p-4 neobrutal-shadow group-hover:neobrutal-shadow-blue transition-all duration-500 overflow-hidden rounded-[40px]">
             <Image
-              src="/about_portrait.png"
+              src="/about_portrait.webp"
               alt="Creative Professional"
               fill
               className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 rounded-[40px]"
