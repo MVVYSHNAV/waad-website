@@ -73,7 +73,7 @@ export default function About() {
               src="/about_portrait.webp"
               alt="Creative Professional"
               fill
-              className="object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110 rounded-[40px]"
+              className="object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 scale-110 group-hover:scale-100 rounded-[40px]"
             />
           </div>
           
