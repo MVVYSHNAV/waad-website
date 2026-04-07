@@ -196,7 +196,7 @@ export default function Hero() {
         {floatingChips.map((chip, i) => (
           <div
             key={i}
-            className="absolute px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-[9px] text-white/40 tracking-[0.2em] whitespace-nowrap backdrop-blur-md"
+            className="absolute px-4 py-2 bg-foreground/5 border border-border rounded-full font-mono text-[9px] text-foreground/40 tracking-[0.2em] whitespace-nowrap backdrop-blur-md"
             style={{ left: chip.x, top: chip.y }}
           >
             [{chip.text}]

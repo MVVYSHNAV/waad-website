@@ -67,10 +67,13 @@ export default function Portfolio() {
               <div className="absolute inset-0 bg-foreground/10 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-end p-10">
                 <div className="flex flex-col items-start gap-4">
                   <span className="bg-lime text-black font-mono text-[10px] px-3 py-1 uppercase tracking-widest font-bold">
-                    <div className="reveal active overflow-hidden">
-                  <h3 className="text-4xl text-foreground font-bebas tracking-tighter">
-                    {project.title}
-                  </h3>
+                    {project.category}
+                  </span>
+                  <div className="reveal active overflow-hidden">
+                    <h3 className="text-4xl text-foreground font-bebas tracking-tighter">
+                      {project.title}
+                    </h3>
+                  </div>
                 </div>
               </div>
               
