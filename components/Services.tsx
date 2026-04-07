@@ -137,8 +137,8 @@ export default function Services() {
           [ARCHITECTURE / SOLUTIONS]
         </label>
         
-        <h2 className="text-6xl md:text-8xl mb-24 max-w-4xl leading-[0.8] tracking-tighter text-white">
-          CRAFTING DIGITAL <span className="text-outline text-white/50">ECOSYSTEMS</span> THAT DOMINATE.
+        <h2 className="text-6xl md:text-8xl mb-24 max-w-4xl leading-[0.8] tracking-tighter text-foreground">
+          CRAFTING DIGITAL <span className="text-outline text-foreground/50">ECOSYSTEMS</span> THAT DOMINATE.
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -146,10 +146,10 @@ export default function Services() {
             <div
               key={index}
               ref={(el) => { cardsRef.current[index] = el; }}
-              className={`group relative overflow-hidden bg-card p-12 border border-white/5 flex flex-col justify-between rounded-[40px] transition-all duration-500 hover:border-lime/30 hover:shadow-2xl hover:shadow-blue/10 ${service.className}`}
+              className={`group relative overflow-hidden bg-card p-12 border border-border flex flex-col justify-between rounded-[40px] transition-all duration-500 hover:border-lime/30 hover:shadow-2xl hover:shadow-blue/10 ${service.className}`}
             >
               <div className="absolute top-0 right-0 pointer-events-none p-12 overflow-hidden">
-                <span className="index-num font-bebas text-[180px] leading-none text-white opacity-[0.02] group-hover:opacity-[0.05] transition-opacity select-none">
+                <span className="index-num font-bebas text-[180px] leading-none text-foreground opacity-[0.02] group-hover:opacity-[0.05] transition-opacity select-none">
                   0{index + 1}
                 </span>
               </div>
@@ -164,21 +164,21 @@ export default function Services() {
               <div className="relative z-10">
                 <div className="flex flex-wrap gap-2 mb-10">
                   {service.tags.map((tag, t) => (
-                    <span key={t} className="service-tag font-mono text-[9px] uppercase tracking-widest px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/50 group-hover:text-white transition-colors">
+                    <span key={t} className="service-tag font-mono text-[9px] uppercase tracking-widest px-3 py-1 bg-foreground/5 border border-border rounded-full text-foreground/50 group-hover:text-foreground transition-colors">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-5xl lg:text-6xl mb-8 tracking-tighter text-white group-hover:text-lime transition-colors">
+                <h3 className="text-5xl lg:text-6xl mb-8 tracking-tighter text-foreground group-hover:text-lime transition-colors">
                   {service.title}
                 </h3>
-                <p className="font-dm text-white/40 text-lg md:text-xl max-w-md leading-relaxed group-hover:text-white/80 transition-colors">
+                <p className="font-dm text-foreground/40 text-lg md:text-xl max-w-md leading-relaxed group-hover:text-foreground/80 transition-colors">
                   {service.description}
                 </p>
               </div>
 
               <div className="relative z-10 flex justify-end mt-16">
-                <button className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center bg-transparent group-hover:bg-lime group-hover:text-black transition-all duration-500 group-hover:scale-110 shadow-xl">
+                <button className="w-20 h-20 rounded-full border border-border flex items-center justify-center bg-transparent group-hover:bg-lime group-hover:text-black transition-all duration-500 group-hover:scale-110 shadow-xl">
                   <span className="text-3xl transition-transform group-hover:rotate-45">↗</span>
                 </button>
               </div>

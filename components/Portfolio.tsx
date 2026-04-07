@@ -35,17 +35,17 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-20 lg:py-32 px-6 lg:px-12 bg-[#060608]">
+    <section id="portfolio" className="py-20 lg:py-32 px-6 lg:px-12 bg-background">
       <div className="max-w-screen-2xl mx-auto">
         <label className="font-mono text-xs uppercase tracking-[0.4em] text-lime mb-8 block font-bold animate-fade-up">
           [OUR LATEST WORK]
         </label>
         
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
-          <h2 className="text-5xl md:text-8xl flex-1 leading-none tracking-tight text-white animate-fade-up">
+          <h2 className="text-5xl md:text-8xl flex-1 leading-none tracking-tight text-foreground animate-fade-up">
             OUR WORK SPEAKS <br /> FOR ITSELF.
           </h2>
-          <button className="px-8 py-4 border border-white/10 font-mono text-xs uppercase tracking-widest text-white hover:bg-lime hover:text-black transition-all duration-300 transform hover:-translate-y-1">
+          <button className="px-8 py-4 border border-border font-mono text-xs uppercase tracking-widest text-foreground hover:bg-lime hover:text-black transition-all duration-300 transform hover:-translate-y-1">
             View All Projects ↗
           </button>
         </div>
@@ -54,7 +54,7 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`group relative overflow-hidden bg-card border border-white/5 transition-all duration-500 hover:border-lime/40 rounded-[40px] ${project.className}`}
+              className={`group relative overflow-hidden bg-card border border-border transition-all duration-500 hover:border-lime/40 rounded-[40px] ${project.className}`}
             >
               <Image
                 src={project.image}
@@ -64,12 +64,11 @@ export default function Portfolio() {
               />
               
               {/* Overlay on Hover */}
-              <div className="absolute inset-0 bg-black/40 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-end p-10">
+              <div className="absolute inset-0 bg-foreground/10 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-end p-10">
                 <div className="flex flex-col items-start gap-4">
                   <span className="bg-lime text-black font-mono text-[10px] px-3 py-1 uppercase tracking-widest font-bold">
-                    {project.category}
-                  </span>
-                  <h3 className="text-4xl text-white font-bebas tracking-tighter">
+                    <div className="reveal active overflow-hidden">
+                  <h3 className="text-4xl text-foreground font-bebas tracking-tighter">
                     {project.title}
                   </h3>
                 </div>

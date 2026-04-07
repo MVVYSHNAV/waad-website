@@ -182,7 +182,7 @@ export default function Hero() {
   };
 
   return (
-    <section ref={heroRef} className="relative min-h-[100dvh] md:min-h-[110vh] flex flex-col justify-center pt-20 md:pt-24 overflow-hidden bg-[#060608]">
+    <section ref={heroRef} className="relative min-h-[100dvh] md:min-h-[110vh] flex flex-col justify-center pt-20 md:pt-24 overflow-hidden bg-background">
       {/* Systematic Grid Background */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -211,7 +211,7 @@ export default function Hero() {
             [ARCHITECTURE OF DISRUPTION]
           </div>
 
-          <h1 ref={line1Ref} className="hero-title text-[clamp(4rem,18vw,15rem)] leading-[0.7] tracking-tighter text-white text-center md:text-left">
+          <h1 ref={line1Ref} className="hero-title text-[clamp(4rem,18vw,15rem)] leading-[0.7] tracking-tighter text-foreground text-center md:text-left">
             <SplittedText text="WE ARE" />
           </h1>
 
@@ -219,7 +219,7 @@ export default function Hero() {
             <h1 ref={line2Ref} className="hero-title text-[clamp(4rem,18vw,15rem)] leading-[0.7] tracking-tighter text-lime md:text-outline md:hover:text-lime transition-all duration-700 text-center md:text-left">
               <SplittedText text="WAAD★" />
             </h1>
-            <p className="font-dm text-white/30 text-[11px] md:text-sm max-w-[320px] mb-6 md:mb-10 leading-relaxed uppercase tracking-widest text-center md:text-left border-l border-white/5 pl-6 block">
+            <p className="font-dm text-foreground/30 text-[11px] md:text-sm max-w-[320px] mb-6 md:mb-10 leading-relaxed uppercase tracking-widest text-center md:text-left border-l border-border pl-6 block">
               TRANSFORMING VISIONS INTO UNCONVENTIONAL DIGITAL REALITIES. ELITE WEB CRAFT FOR THE NEW CREATIVE ERA.
             </p>
           </div>
@@ -260,8 +260,8 @@ export default function Hero() {
             className="object-cover scale-110 filter grayscale-50 opacity-60 md:opacity-70 mix-blend-screen transition-all duration-1000 hover:grayscale-0"
           />
           {/* Edge Fade Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#060608] via-transparent to-[#060608] opacity-80" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#060608] via-transparent to-[#060608] opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background opacity-40" />
         </div>
       </div>
 
@@ -269,17 +269,17 @@ export default function Hero() {
       <div className="flex justify-center md:block md:absolute md:bottom-28 md:right-24 z-40 mt-10 md:mt-0 px-8 w-full md:w-auto">
         <button
           ref={ctaBtnRef}
-          className="group relative flex items-center justify-center bg-white hover:bg-lime w-full md:w-auto px-10 md:px-14 py-5 md:py-7 rounded-full text-black font-bebas text-lg md:text-2xl uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-[0_15px_40px_-5px_rgba(200,255,0,0.4)]"
+          className="group relative flex items-center justify-center bg-foreground hover:bg-lime w-full md:w-auto px-10 md:px-14 py-5 md:py-7 rounded-full text-background font-bebas text-lg md:text-2xl uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-[0_15px_40px_-5px_rgba(200,255,0,0.4)]"
         >
           <span className="relative z-10 flex items-center gap-4 md:gap-6">
-            START PROJECT <span className="group-hover:translate-x-3 transition-transform duration-300 transform-gpu">&rarr;</span>
+            START PROJECT <span className="group-hover:translate-x-3 transition-transform duration-300 transform-gpu">→</span>
           </span>
           <div className="absolute inset-0 rounded-full bg-lime scale-[0.6] opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 -z-10" />
         </button>
       </div>
 
       {/* Ticker - Corrected with actual services */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-background/80 backdrop-blur-3xl py-8 md:py-12 border-t border-white/10 z-20">
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-background/80 backdrop-blur-3xl py-8 md:py-12 border-t border-border z-20">
         <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused]">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="flex items-center gap-12 md:gap-20 px-8">
@@ -295,7 +295,7 @@ export default function Hero() {
                   className={`font-bebas text-4xl md:text-7xl tracking-tighter transition-all duration-300 ${
                     item === "✦" 
                       ? "text-lime drop-shadow-[0_0_15px_rgba(113,191,68,0.4)]" 
-                      : "text-white cursor-default"
+                      : "text-foreground cursor-default"
                   }`}
                 >
                   {item}

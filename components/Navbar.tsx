@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
+import { ThemeToggle } from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -65,7 +66,7 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-[1000] px-6 lg:px-12 py-6 transition-all duration-300 ${
-          scrolled ? "bg-background/50 backdrop-blur-xl py-4 border-b border-white/5" : "bg-transparent"
+          scrolled ? "bg-background/50 backdrop-blur-xl py-4 border-b border-border" : "bg-transparent"
         }`}
       >
         <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
@@ -80,7 +81,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-12 text-[13px] font-mono uppercase tracking-widest text-[#F0F0F0]/80">
+          <div className="hidden md:flex items-center gap-8 lg:gap-12 text-[13px] font-mono uppercase tracking-widest text-foreground/80">
             {navItems.map((item) => (
               <Link
                 key={item}
@@ -93,6 +94,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             {/* CTA Desktop */}
             <Link
               href="/contact"
@@ -109,12 +111,12 @@ export default function Navbar() {
               aria-label="Toggle Menu"
             >
               <div
-                className={`h-[2px] bg-white transition-all duration-300 transform-gpu rounded-full ${
+                className={`h-[2px] bg-foreground transition-all duration-300 transform-gpu rounded-full ${
                   isOpen ? "w-8 rotate-45 translate-y-[5px] !bg-lime" : "w-8"
                 }`}
               />
               <div
-                className={`h-[2px] bg-white transition-all duration-300 transform-gpu rounded-full ${
+                className={`h-[2px] bg-foreground transition-all duration-300 transform-gpu rounded-full ${
                   isOpen ? "w-8 -rotate-45 -translate-y-[5px] !bg-lime" : "w-5 group-hover:w-8"
                 }`}
               />
@@ -137,15 +139,17 @@ export default function Navbar() {
         {/* Sliding Panel */}
         <div 
           ref={menuContentRef}
-          className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-background border-l border-white/5 flex flex-col translate-x-full shadow-2xl"
+          className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-background border-l border-border flex flex-col translate-x-full shadow-2xl"
         >
-          {/* Close Button Inside Menu */}
+          <div className="absolute top-8 left-10 flex items-center gap-4">
+            <ThemeToggle />
+          </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-8 right-10 flex items-center justify-center p-4 bg-white/5 border border-white/10 rounded-full hover:bg-lime/10 transition-colors group/close"
+            className="absolute top-8 right-10 flex items-center justify-center p-4 bg-foreground/5 border border-border rounded-full hover:bg-lime/10 transition-colors group/close"
             aria-label="Close Menu"
           >
-            <span className="font-mono text-[9px] tracking-widest text-[#F0F0F0]/40 group-hover/close:text-lime">CLOSE [X]</span>
+            <span className="font-mono text-[9px] tracking-widest text-foreground/40 group-hover/close:text-lime">CLOSE [X]</span>
           </button>
 
           {/* Decorative elements */}
@@ -164,8 +168,8 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="mobile-link group flex items-baseline gap-4"
                 >
-                  <span className="text-[10px] font-mono text-white/20 group-hover:text-lime transition-colors">0{index + 1}</span>
-                  <span className="text-5xl font-bebas text-white group-hover:text-lime transition-colors leading-[0.8] tracking-tighter">
+                  <span className="text-[10px] font-mono text-foreground/20 group-hover:text-lime transition-colors">0{index + 1}</span>
+                  <span className="text-5xl font-bebas text-foreground group-hover:text-lime transition-colors leading-[0.8] tracking-tighter">
                     {item}
                   </span>
                 </Link>
@@ -183,10 +187,10 @@ export default function Navbar() {
             </Link>
 
             <div className="flex flex-col gap-3">
-              <div className="font-mono text-[9px] text-white/20 tracking-[0.4em] uppercase">
+              <div className="font-mono text-[9px] text-foreground/20 tracking-[0.4em] uppercase">
                 [CONTACT CENTER]
               </div>
-              <p className="font-mono text-white/40 text-[11px] tracking-widest font-bold">HELLO@WAAD.AGENCY</p>
+              <p className="font-mono text-foreground/40 text-[11px] tracking-widest font-bold">HELLO@WAAD.AGENCY</p>
               <div className="flex gap-4 mt-2">
                 {["IG", "LI", "TW"].map(sm => (
                   <span key={sm} className="font-mono text-[10px] text-lime/40 hover:text-lime cursor-pointer transition-colors">/{sm}</span>

@@ -118,7 +118,7 @@ export default function Blog() {
     <section
       ref={sectionRef}
       id="blog"
-      className="relative bg-[#060608] overflow-hidden"
+      className="relative bg-background overflow-hidden"
     >
       {/* Main Pinned Content — uses full viewport height */}
       <div className="h-screen flex flex-col justify-between py-8 lg:py-12 relative z-10">
@@ -132,8 +132,8 @@ export default function Blog() {
                 JOURNAL / {String(posts.length).padStart(2, "0")} ENTRIES
               </label>
             </div>
-            <button className="group font-mono text-[9px] uppercase tracking-[0.3em] text-white/50 hover:text-white flex items-center gap-3 py-3 px-6 border border-white/10 rounded-full hover:bg-lime hover:text-black hover:border-lime transition-all duration-500">
-              ALL ARTICLES <span className="text-lime group-hover:text-black group-hover:translate-x-2 transition-all text-base">&rarr;</span>
+            <button className="group font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50 hover:text-foreground flex items-center gap-3 py-3 px-6 border border-border rounded-full hover:bg-lime hover:text-black hover:border-lime transition-all duration-500">
+              ALL ARTICLES <span className="text-lime group-hover:text-black group-hover:translate-x-2 transition-all text-base">→</span>
             </button>
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function Blog() {
             <Link
               key={index}
               href={post.slug}
-              className="blog-card group relative cursor-none w-[78vw] md:w-[45vw] lg:w-[38vw] max-w-[580px] flex-shrink-0 flex flex-row bg-card rounded-[32px] overflow-hidden border border-white/5 hover:border-white/15 transition-all duration-700 h-[60vh] max-h-[480px]"
+              className="blog-card group relative cursor-none w-[78vw] md:w-[45vw] lg:w-[38vw] max-w-[580px] flex-shrink-0 flex flex-row bg-card rounded-[32px] overflow-hidden border border-border hover:border-white/15 dark:hover:border-white/20 transition-all duration-700 h-[60vh] max-h-[480px]"
             >
               {/* LEFT: Image — takes half the card */}
               <div className="relative w-1/2 overflow-hidden flex-shrink-0">
@@ -161,7 +161,7 @@ export default function Blog() {
 
                 {/* Ghost Number */}
                 <div className="absolute bottom-4 left-4 z-20">
-                  <span className="font-bebas text-[80px] leading-none text-white/[0.06] group-hover:text-white/[0.12] transition-all duration-700 select-none">
+                  <span className="font-bebas text-[80px] leading-none text-foreground/[0.06] group-hover:text-foreground/[0.12] transition-all duration-700 select-none">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -171,24 +171,24 @@ export default function Blog() {
               <div className="flex flex-col justify-between p-6 md:p-8 w-1/2">
                 {/* Top: Category + Date */}
                 <div className="flex flex-col gap-3">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-lime w-fit">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 bg-foreground/5 border border-border rounded-full text-lime w-fit">
                     {post.category}
                   </span>
-                  <span className="font-mono text-[9px] text-white/30 tracking-[0.3em] uppercase">{post.date}</span>
+                  <span className="font-mono text-[9px] text-foreground/30 tracking-[0.3em] uppercase">{post.date}</span>
                 </div>
 
                 {/* Middle: Title */}
-                <h3 className="text-2xl md:text-3xl lg:text-4xl text-white font-bebas leading-[0.85] tracking-tight group-hover:text-lime transition-colors duration-500 my-4">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl text-foreground font-bebas leading-[0.85] tracking-tight group-hover:text-lime transition-colors duration-500 my-4">
                   {post.title}
                 </h3>
 
                 {/* Bottom: CTA + Pagination */}
-                <div className="flex items-center justify-between border-t border-white/5 pt-4">
-                  <span className="font-mono text-[8px] text-white/25 uppercase tracking-widest">
+                <div className="flex items-center justify-between border-t border-border pt-4">
+                  <span className="font-mono text-[8px] text-foreground/25 uppercase tracking-widest">
                     {String(index + 1).padStart(2, "0")} / {String(posts.length).padStart(2, "0")}
                   </span>
-                  <div className="w-10 h-10 rounded-full border border-white/10 group-hover:bg-lime group-hover:border-lime text-white group-hover:text-black flex items-center justify-center text-sm transition-all duration-500 group-hover:scale-110">
-                    &nearr;
+                  <div className="w-10 h-10 rounded-full border border-border group-hover:bg-lime group-hover:border-lime text-foreground group-hover:text-black flex items-center justify-center text-sm transition-all duration-500 group-hover:scale-110">
+                    ↗
                   </div>
                 </div>
               </div>
@@ -202,15 +202,15 @@ export default function Blog() {
         {/* Scroll Progress Bar — compact at bottom */}
         <div className="px-8 lg:px-16 flex-shrink-0">
           <div className="max-w-screen-2xl mx-auto flex items-center gap-6">
-            <span className="font-mono text-[8px] text-white/15 uppercase tracking-widest whitespace-nowrap hidden md:block">SCROLL</span>
-            <div className="h-[2px] bg-white/5 w-full relative overflow-hidden rounded-full flex-1">
+            <span className="font-mono text-[8px] text-foreground/15 uppercase tracking-widest whitespace-nowrap hidden md:block">SCROLL</span>
+            <div className="h-[2px] bg-foreground/5 w-full relative overflow-hidden rounded-full flex-1">
               <div
                 ref={progressRef}
                 className="absolute top-0 left-0 h-full w-full bg-lime origin-left rounded-full"
                 style={{ transform: "scaleX(0)" }}
               />
             </div>
-            <span className="font-mono text-[8px] text-white/15 uppercase tracking-widest whitespace-nowrap hidden md:block">EXPLORE</span>
+            <span className="font-mono text-[8px] text-foreground/15 uppercase tracking-widest whitespace-nowrap hidden md:block">EXPLORE</span>
           </div>
         </div>
       </div>

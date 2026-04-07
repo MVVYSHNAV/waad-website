@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   description: "WAAD is a bold, high-energy software development company specializing in neobrutalist design and digital excellence.",
 };
 
+import { ThemeProvider } from "@/components/theme-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,9 +41,17 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable} ${pinyonScript.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-[#050505] text-[#FFFFFF] font-dm-sans selection:bg-[#71bf44] selection:text-[#0A0A0A] overflow-x-hidden">
-        {children}
+      <body className="min-h-full bg-background text-foreground font-dm selection:bg-lime selection:text-black overflow-x-hidden">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <script
           dangerouslySetInnerHTML={{
             __html: `

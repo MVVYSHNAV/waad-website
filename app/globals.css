@@ -1,12 +1,23 @@
 @import "tailwindcss";
 
 :root {
+  --background: #ffffff;
+  --foreground: #080808;
+  --accent-lime: #71bf44;
+  --accent-blue: #6948eb;
+  --card-bg: #f8f8f8;
+  --card-bg-light: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
   --background: #080808;
   --foreground: #F5F5F5;
   --accent-lime: #71bf44;
   --accent-blue: #6948eb;
   --card-bg: #121212;
   --card-bg-light: #1A1A1A;
+  --border: rgba(255, 255, 255, 0.1);
 }
 
 @theme inline {
@@ -16,6 +27,7 @@
   --color-blue: var(--accent-blue);
   --color-card: var(--card-bg);
   --color-card-light: var(--card-bg-light);
+  --color-border: var(--border);
 
   --font-bebas: var(--font-bebas-neue);
   --font-dm: var(--font-dm-sans);
@@ -50,7 +62,7 @@
 
 @layer base {
   * {
-    @apply border-white/10;
+    @apply border-border;
   }
 
   @media (min-width: 768px) {

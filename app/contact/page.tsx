@@ -8,7 +8,7 @@ import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
   return (
-    <main className="relative flex flex-col w-full min-h-screen md:max-w-screen-2xl md:mx-auto md:border-x border-white/10 shadow-2xl bg-black selection:bg-lime selection:text-black">
+    <main className="relative flex flex-col w-full min-h-screen md:max-w-screen-2xl md:mx-auto md:border-x border-border shadow-2xl bg-background selection:bg-lime selection:text-black">
       <CustomCursor />
       <Noise />
       <Navbar />
@@ -22,10 +22,10 @@ export default function Contact() {
           <label className="font-mono text-[11px] uppercase tracking-[0.5em] text-lime font-bold block">
             [INITIATE DISRUPTION]
           </label>
-          <h1 className="text-7xl md:text-[clamp(4.5rem,11vw,12rem)] font-bebas leading-[0.8] tracking-tighter text-white uppercase italic">
-            READY TO <span className="text-outline text-white/20">REDEFINE</span> EVERYTHING?
+          <h1 className="text-7xl md:text-[clamp(4.5rem,11vw,12rem)] font-bebas leading-[0.8] tracking-tighter text-foreground uppercase italic">
+            READY TO <span className="text-outline text-foreground/20">REDEFINE</span> EVERYTHING?
           </h1>
-          <p className="font-dm text-white/50 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto">
+          <p className="font-dm text-foreground/50 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto">
             Whether you are a startup with a vision or an enterprise in need of disruption, we engineer the elite software that matters.
           </p>
         </div>
@@ -34,19 +34,19 @@ export default function Contact() {
           {/* Left Column: Direct Contact */}
           <div className="flex flex-col gap-24 reveal active [animation-delay:0.3s]">
             <div className="flex flex-col gap-10">
-              <h3 className="font-bebas text-5xl text-white tracking-widest uppercase border-l-4 border-lime pl-6">
+              <h3 className="font-bebas text-5xl text-foreground tracking-widest uppercase border-l-4 border-lime pl-6">
                 DIRECT CHANNELS
               </h3>
               <div className="flex flex-col gap-12">
                 <div className="group">
-                  <p className="font-mono text-[10px] text-white/30 tracking-[0.4em] uppercase mb-1">GENERAL INQUIRIES</p>
-                  <a href="mailto:hello@waad.agency" className="text-3xl md:text-5xl font-bebas text-white hover:text-lime transition-all decoration-1 underline underline-offset-8 decoration-white/10 hover:decoration-lime">
+                  <p className="font-mono text-[10px] text-foreground/30 tracking-[0.4em] uppercase mb-1">GENERAL INQUIRIES</p>
+                  <a href="mailto:hello@waad.agency" className="text-3xl md:text-5xl font-bebas text-foreground hover:text-lime transition-all decoration-1 underline underline-offset-8 decoration-border hover:decoration-lime">
                     HELLO@WAAD.AGENCY
                   </a>
                 </div>
                 <div className="group">
-                  <p className="font-mono text-[10px] text-white/30 tracking-[0.4em] uppercase mb-1">SCHEDULING</p>
-                  <a href="#" className="text-3xl md:text-5xl font-bebas text-white hover:text-lime transition-all decoration-1 underline underline-offset-8 decoration-white/10 hover:decoration-lime">
+                  <p className="font-mono text-[10px] text-foreground/30 tracking-[0.4em] uppercase mb-1">SCHEDULING</p>
+                  <a href="#" className="text-3xl md:text-5xl font-bebas text-foreground hover:text-lime transition-all decoration-1 underline underline-offset-8 decoration-border hover:decoration-lime">
                     BOOK A MEET.EXE ↘
                   </a>
                 </div>
@@ -54,7 +54,7 @@ export default function Contact() {
             </div>
 
             <div className="flex flex-col gap-10">
-              <h3 className="font-bebas text-5xl text-white tracking-widest uppercase border-l-4 border-blue/40 pl-6">
+              <h3 className="font-bebas text-5xl text-foreground tracking-widest uppercase border-l-4 border-blue/40 pl-6">
                 SOCIAL NODES
               </h3>
               <div className="grid grid-cols-2 gap-x-14 gap-y-10">
@@ -65,10 +65,10 @@ export default function Contact() {
                   { name: "DRIBBBLE", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.49-6.18 7.08-15.26 8.67m13.29 1.89c-4.37-1.13-7.43-1.46-13.46.36"></path></svg> }
                 ].map((sm, i) => (
                   <a key={i} href="#" className="flex items-center gap-4 group">
-                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:text-lime group-hover:border-lime transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/40 group-hover:text-lime group-hover:border-lime transition-all duration-300">
                       {sm.icon}
                     </div>
-                    <span className="font-mono text-[13px] uppercase tracking-[0.3em] text-white/40 group-hover:text-white transition-colors">
+                    <span className="font-mono text-[13px] uppercase tracking-[0.3em] text-foreground/40 group-hover:text-foreground transition-colors">
                       {sm.name}
                     </span>
                   </a>
@@ -78,7 +78,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Form */}
-          <div className="bg-white/5 p-8 md:p-14 rounded-[50px] border border-white/5 shadow-[0_30px_60px_-15px_rgba(0,0,0,1)] backdrop-blur-3xl relative overflow-hidden reveal active [animation-delay:0.5s]">
+          <div className="bg-card p-8 md:p-14 rounded-[50px] border border-border shadow-[0_30px_60px_-15px_rgba(0,0,0,1)] backdrop-blur-3xl relative overflow-hidden reveal active [animation-delay:0.5s]">
             <div className="absolute top-0 right-0 w-full h-1/2 bg-lime/10 blur-[100px] -z-10" />
             <div className="absolute bottom-0 left-0 w-full h-1/2 bg-blue/5 blur-[100px] -z-10" />
             <ContactForm />
